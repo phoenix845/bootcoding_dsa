@@ -1,0 +1,14 @@
+class Solution(object):
+    def minimumPushes(self, word):
+        """
+        :type word: str
+        :rtype: int
+        """
+        
+        counter = Counter(word)
+        counts = sorted(counter.values(), reverse=True)
+        
+        levels = chain(*[itertools.repeat(i, 8) for i in [1, 2, 3, 4]])
+        output = sum(map(lambda x: x[0] * x[1], zip(counts, levels)))
+        
+        return output
